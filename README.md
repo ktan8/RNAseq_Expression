@@ -9,8 +9,8 @@ measurement should be largely inaccurate. In extreme cases, the differences are 
 
 that the following code does not account for 
 
-1) Multiple splice variants
+## 1) Multiple splice variants
 
-The Code does not distinguish between gene expression for each and every single splice variants. 
+The Code is unable to extract and distinguish the expression for each and every single splice variants (In fact, most algorithms that claims to be able to do so are not capable of doing it well in every single circumstance more so due to the limitations with RNA-seq datasets rather than the algorithm itself).
 
 
