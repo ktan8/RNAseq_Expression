@@ -21,4 +21,6 @@ This code works by by counting the number of reads that localizes to the annotat
 In some cases where there are RNA molecules expressed independent and within the intronic regions, the expression of the gene of interest may be a little bit biased. However, such events are not known to occur for most of the genes that we have looked at.
 
 
+## 3) Overlapping genes
 
+For some regions of the genome where there are overlapping genes which runs on opposite strands of the same DNA. In these cases,  it may not be possible to distinguish the origin of the transcript. In these cases, RNA expression analysis of the affected genes may not be extremely accurate.
