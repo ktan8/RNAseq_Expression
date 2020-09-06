@@ -7,14 +7,17 @@ use Parallel::ForkManager;
 
 # The following script is a script written to perform the RPKM
 # based measurement of the expression of the gene
-my $annotation_file = "/home/kartong/Google\ Drive/Code/RPKM_measurement/hg19_refseq_20140619_mod.txt";
+#my $annotation_file = "/home/kartong/Google\ Drive/Code/RPKM_measurement/hg19_refseq_20140619_mod.txt";
+#my $output_folder = "/home/kartong/ouput_folder/";
+#my $bamfile_list = "/home/kartong/sample_list.txt.csv";
 
+# Input arguments
+my $annotation_file = $ARGV[0];
+my $output_folder 	= $ARGV[1];
+my $bamfile_list 	= $ARGV[2];
 
-my $output_folder = "/home/kartong/ouput_folder/";
-
-my $bamfile_list = "/home/kartong/sample_list.txt.csv";
-my $file_info_list		= $output_folder . "20140619_bam_info.txt";
-my $combined_rpkm_list	= $output_folder . "20140619_combined_rpkm.txt";
+my $file_info_list		= $output_folder . "RNAseq_expr_bam_info.txt";
+my $combined_rpkm_list	= $output_folder . "RNAseq_expr_combined_rpkm.txt";
 
 
 my $pm = Parallel::ForkManager->new(4);
@@ -53,7 +56,9 @@ $pm -> run_on_finish ( # called BEFORE the first call to start()
 
 open(INPUT, $bamfile_list) || die $!;
 
-
+# Loop through a list of bam files where
+# each line is a label, followed by the 
+# bamfile path
 while(my $line = <INPUT>){
 	$line =~ s/\r\n//;
 	chomp($line);
@@ -127,6 +132,8 @@ foreach(@overall_info_AOA){
 close(FILEINFO);
 
 
+# Print the output to a combined
+# RPKM file
 open(COMB_RPKM, ">", $combined_rpkm_list);
 print COMB_RPKM join("\t", "transcript_id", "gene_name", keys(%overall_RPKM_HOA) ) . "\n";
 my $sample_label;
