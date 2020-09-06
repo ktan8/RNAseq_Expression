@@ -20,7 +20,7 @@ my $file_info_list		= $output_folder . "RNAseq_expr_bam_info.txt";
 my $combined_rpkm_list	= $output_folder . "RNAseq_expr_combined_rpkm.txt";
 
 
-my $pm = Parallel::ForkManager->new(4);
+my $pm = Parallel::ForkManager->new(8);
 
 
 # Parse the information I need from the annotation table
