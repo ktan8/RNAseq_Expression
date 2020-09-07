@@ -255,13 +255,13 @@ sub calculate_gene_length{
 
 sub count_mapped_reads{
 	my $bamfile = $_[0];
-	
+
 	my @flagstat_result = split("\n", `samtools flagstat $bamfile`);
 
 	my $total_reads		= ( $flagstat_result[0] =~ m/^([0-9]+)/ )[0];
-	my $mapped_reads	= ( $flagstat_result[2] =~ m/^([0-9]+)/ )[0];
-	my $read1			= ( $flagstat_result[4] =~ m/^([0-9]+)/ )[0];
-	my $read2			= ( $flagstat_result[5] =~ m/^([0-9]+)/ )[0];
+	my $mapped_reads	= ( $flagstat_result[4] =~ m/^([0-9]+)/ )[0];
+	my $read1			= ( $flagstat_result[6] =~ m/^([0-9]+)/ )[0];
+	my $read2			= ( $flagstat_result[7] =~ m/^([0-9]+)/ )[0];
 	
 	#284052914 + 0 in total (QC-passed reads + QC-failed reads)
 	#0 + 0 duplicates
@@ -274,7 +274,6 @@ sub count_mapped_reads{
 	#13530320 + 0 singletons (4.76%:-nan%)
 	#5898040 + 0 with mate mapped to a different chr
 	#5898022 + 0 with mate mapped to a different chr (mapQ>=5)
-
 	
 	return ($total_reads, $mapped_reads, $read1, $read2);
 }
